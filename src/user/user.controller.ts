@@ -23,10 +23,11 @@ export class UserController {
     ) {
         try {
             const { email } = createUserDto;
-            await this.userService.addUser(email);
+            const user = await this.userService.addUser(email);
             res.status(HttpStatus.CREATED).json({
                 status: HttpStatus.CREATED,
                 message: 'User has been created',
+                user: user,
             });
         } catch (error) {
             if (error.message === 'User already exists') {
@@ -42,7 +43,7 @@ export class UserController {
             }
         }
     }
-    /*
+
     @Get()
     async getUserTasks() {
         try {
@@ -61,5 +62,4 @@ export class UserController {
             );
         }
     }
-    */
 }
