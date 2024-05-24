@@ -17,7 +17,7 @@ Un SGBD a été contenairisés via Docker :
 Cela vous permet à vous (et à moi) de ne pas avoir à les installer sur nos machines. Pour pouvoir utiliser ces SGBD contenairisés :
 1. Installez [Docker Desktop](https://www.docker.com/products/docker-desktop/) sur votre machine
 2. Lancez-le
-3. Lorsque vous voudrez lancer votre serveur, utilisez le script npm de votre choix : `npm run start:mongodb` ou `npm run start:postgres` (ces scripts démarrent une base de données, puis lancent le serveur en watch mode)
+3. Lorsque vous voudrez lancer votre serveur, utilisez le script npm : `npm run start:mongodb`(ce script démarre une base de données, puis lance le serveur en watch mode)
 
 Pour pouvoir communiquer avec la base de données depuis votre projet NestJS, vous devrez configurer l'outil d'ORM :
 * [Mongoose](https://docs.nestjs.com/techniques/mongodb)
