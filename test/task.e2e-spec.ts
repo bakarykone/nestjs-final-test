@@ -25,7 +25,7 @@ describe('TaskController', () => {
             await userService.resetData();
             await app.close();
         });
-        
+
         it('should return an HTTP error status 400 when given userId is not valid', async () => {
             const invalidUserIds = ['h e', '-87', 'eeee'];
 
@@ -37,7 +37,7 @@ describe('TaskController', () => {
                 expect(response.status).toBe(400);
             }
         });
-        
+
         it('should return an HTTP status 200 when given userId is valid', async () => {
             const createdElements = await createTasksFor2DifferentUsers(
                 userService,
@@ -59,9 +59,8 @@ describe('TaskController', () => {
                 expect(haveAllTasksBeenReturned).toBe(true);
             }
         });
-        
     });
-        
+
     describe('POST /', () => {
         beforeEach(async () => {
             app = await createNestApplication();
@@ -140,7 +139,6 @@ describe('TaskController', () => {
             }
         });
     });
-
 });
 
 async function createTasksFor2DifferentUsers(

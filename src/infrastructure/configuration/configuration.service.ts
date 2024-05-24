@@ -3,7 +3,7 @@ import {
     DatabaseConfiguration,
     DATABASE_NAME,
     DATABASE_PORT,
-    DATABASE_URL
+    DATABASE_URL,
 } from './model/database-configuration';
 import { Injectable } from '@nestjs/common';
 
@@ -24,14 +24,20 @@ export class ConfigurationService {
     }
 
     private setupEnvironment(): void {
-        const databasePort = this.nestConfigService.get<string>(DATABASE_PORT, '24000');
-const databaseName = this.nestConfigService.get<string>(DATABASE_NAME, 'nestjs-final-test-db');
-const databaseUrl = this.nestConfigService.get<string>(DATABASE_URL);
+        const databasePort = this.nestConfigService.get<string>(
+            DATABASE_PORT,
+            '24000',
+        );
+        const databaseName = this.nestConfigService.get<string>(
+            DATABASE_NAME,
+            'nestjs-final-test-db',
+        );
+        const databaseUrl = this.nestConfigService.get<string>(DATABASE_URL);
 
         this._databaseConfig = {
             [DATABASE_NAME]: databaseName,
             [DATABASE_PORT]: databasePort,
-            [DATABASE_URL]: databaseUrl
+            [DATABASE_URL]: databaseUrl,
         };
     }
 
