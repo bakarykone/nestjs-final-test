@@ -10,7 +10,7 @@ Faire passer tous ces tests en implémentant.
 * [Mongoose](https://docs.nestjs.com/techniques/mongodb)
 
 ### Setup
-* Installer les node_modules avec la commande npm ci
-* Lancer le serveur avec la commande : npm run start:mongodb
-* Lancer les tests avec la commande : npm run test:e2e:mongodb
+* Installer les node_modules avec la commande `npm ci`
+* Lancer le serveur avec la commande : `npm run start:mongodb`
+* Lancer les tests avec la commande : `npm run test:e2e:mongodb`
 
