@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Task, TaskDocument } from '../schema/task.schema';
-import { User, UserDocument } from '../schema/user.schema';
+import { TaskModel, TaskDocument } from '../schema/task.schema';
+import { UserModel, UserDocument } from '../schema/user.schema';
 
 @Injectable()
 export class TaskService {
     constructor(
-        @InjectModel(Task.name) private taskModel: Model<TaskDocument>,
-        @InjectModel(User.name) private userModel: Model<UserDocument>,
+        @InjectModel(TaskModel.name) private taskModel: Model<TaskDocument>,
+        @InjectModel(UserModel.name) private userModel: Model<UserDocument>,
     ) {}
 
     async addTask(
         name: string,
         userId: string,
         priority: number,
-    ): Promise<Task> {
+    ): Promise<TaskModel> {
         const user = await this.userModel.findById(userId).exec();
         if (!user) {
             throw new Error('User not found');
@@ -24,7 +24,7 @@ export class TaskService {
         return task;
     }
 
-    async getTaskByName(name: string): Promise<Task> {
+    async getTaskByName(name: string): Promise<TaskModel> {
         const task = await this.taskModel.findOne({ name }).exec();
         if (!task) {
             throw new Error('Task not found');
@@ -32,7 +32,7 @@ export class TaskService {
         return task;
     }
 
-    async getUserTasks(userId: string): Promise<Task[]> {
+    async getUserTasks(userId: string): Promise<TaskModel[]> {
         const user = await this.userModel.findById(userId).exec();
         if (!user) {
             throw new Error('User not found');
@@ -45,26 +45,3 @@ export class TaskService {
         await this.taskModel.deleteMany({});
     }
 }
-
-// import { Injectable, NotImplementedException } from '@nestjs/common';
-
-// @Injectable()
-// export class TaskService {
-//     constructor() {}
-
-//     addTask(name: string, userId: string, priority: number): Promise<void> {
-//         throw new NotImplementedException();
-//     }
-
-//     getTaskByName(name: string): Promise<unknown> {
-//         throw new NotImplementedException();
-//     }
-
-//     getUserTasks(userId: string): Promise<unknown[]> {
-//         throw new NotImplementedException();
-//     }
-
-//     resetData(): Promise<void> {
-//         throw new NotImplementedException();
-//     }
-// }

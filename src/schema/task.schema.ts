@@ -1,40 +1,19 @@
+import { Types } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 
-export type TaskDocument = Task & Document;
+export type TaskDocument = HydratedDocument<TaskModel>;
 
 @Schema()
-export class Task {
-  @Prop({ required: true })
-  name: string;
+export class TaskModel {
+    @Prop({ required: true })
+    name: string;
 
-  @Prop({ required: true })
-  userId: string;
+    @Prop({ required: true, type: Types.ObjectId, ref: 'UserModel' })
+    userId: { type: Types.ObjectId; ref: 'UserModel' };
 
-  @Prop({ required: true, default: 1 })
-  priority: number;
+    @Prop({ required: true })
+    priority: number;
 }
 
-export const TaskSchema = SchemaFactory.createForClass(Task);
-
-// import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-// import { Types, HydratedDocument } from 'mongoose';
-
-// export type TaskDocument = HydratedDocument<Task>;
-
-// @Schema()
-// export class Task {
-//     @Prop({ type: Types.ObjectId, required: true })
-//     _id: Types.ObjectId;
-
-//     @Prop({ required: true })
-//     name: string;
-
-//     @Prop({ required: true })
-//     priority: string;
-
-//     @Prop()
-//     user_id: string;
-// }
-
-// export const TaskSchema = SchemaFactory.createForClass(Task);
+export const TaskSchema = SchemaFactory.createForClass(TaskModel);
